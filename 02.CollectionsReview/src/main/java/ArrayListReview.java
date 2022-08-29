@@ -32,11 +32,14 @@ public class ArrayListReview {
 
         // Backwards Iteration
         System.out.println("Printing Backward with iterator---------------");
-        while (((ListIterator<?>)iter).hasPrevious()) {
+        while (((ListIterator<?>) iter).hasPrevious()) {
             System.out.println(((ListIterator<?>) iter).previous());
         }
 
         // 3. for each loop
+        for (Student student : students) {
+            System.out.println(student);
+        }
 
 
         // 4. Lambda
