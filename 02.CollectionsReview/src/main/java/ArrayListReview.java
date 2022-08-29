@@ -37,14 +37,40 @@ public class ArrayListReview {
         }
 
         // 3. for each loop
+        System.out.println("Printing with for each loop");
         for (Student student : students) {
             System.out.println(student);
         }
 
 
         // 4. Lambda
+        System.out.println("Printing with lambda");
+        students.forEach(student -> System.out.println(student));
 
         // Sorting Elements in List
+        System.out.println("Printing in descending order by Id ");
+        Collections.sort(students, new sortByIdDescending());
+        students.forEach(student -> System.out.println(student));
+
+        System.out.println("Printing in descending order by name ");
+        Collections.sort(students, new sortByNameDescending());
+        students.forEach(student -> System.out.println(student));
     }
 
+    static class sortByIdDescending implements Comparator<Student> {
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o2.id - o1.id;
+        }
+
+    }
+
+    static class sortByNameDescending implements Comparator<Student> {
+
+        @Override
+        public int compare(Student o1, Student o2) {
+            return o2.name.compareToIgnoreCase(o1.name);
+        }
+
+    }
 }
