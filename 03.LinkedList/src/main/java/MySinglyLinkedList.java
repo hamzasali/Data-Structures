@@ -63,5 +63,18 @@ public class MySinglyLinkedList {
         }
     }
 
+    int indexOf(int id) {
+        if (isEmpty()) return -1;
+        int pos = 0;
+        //iterate through the list
+        Node current = head;
+        while (current != null) {
+            if (current.id == id) return pos;
+            pos++;
+            current=current.next;
+        }
+        return -1;
+    }
+
 
 }
