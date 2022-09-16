@@ -100,4 +100,34 @@ public class MySinglyLinkedList {
         return pointer1.id;
     }
 
+    void removeKthItemFromLast(int k) {
+//        int kthFromLast = getKthFromLast(k);
+//        deleteById(kthFromLast);
+
+        Node pointer1 = head;
+        Node pointer2 = head;
+        Node prev = null;
+        for (int i = 0; i < k - 1; i++) {
+            pointer2 = pointer2.next;
+        }
+        while (pointer2 != null) {
+            prev = pointer1;
+            pointer2 = pointer2.next;
+            pointer1 = pointer1.next;
+        }
+        if (pointer1 == head) {
+            head = pointer1.next;
+            pointer1.next = null;
+        } else if (pointer1 == tail) {
+            tail = prev;
+            prev.next = null;
+            size--;
+        } else {
+            prev.next = pointer1.next;
+            pointer1.next = null;
+            size--;
+        }
+
+    }
+
 }
