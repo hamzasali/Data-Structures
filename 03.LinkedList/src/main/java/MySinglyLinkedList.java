@@ -101,8 +101,6 @@ public class MySinglyLinkedList {
     }
 
     void removeKthItemFromLast(int k) {
-//        int kthFromLast = getKthFromLast(k);
-//        deleteById(kthFromLast);
 
         Node pointer1 = head;
         Node pointer2 = head;
@@ -118,6 +116,7 @@ public class MySinglyLinkedList {
         if (pointer1 == head) {
             head = pointer1.next;
             pointer1.next = null;
+            size--;
         } else if (pointer1 == tail) {
             tail = prev;
             prev.next = null;
