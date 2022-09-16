@@ -7,6 +7,17 @@ public class MySinglyLinkedList {
         return head == null;
     }
 
+    void addFirst(int data) {
+        Node node = new Node(data);
+        if (isEmpty()) {
+            head = tail = node;
+        } else {
+            node.next = head;
+            head = node;
+        }
+        size++;
+    }
+
     void add(int data) {
         Node node = new Node(data);
         if (isEmpty()) {
@@ -71,10 +82,22 @@ public class MySinglyLinkedList {
         while (current != null) {
             if (current.id == id) return pos;
             pos++;
-            current=current.next;
+            current = current.next;
         }
         return -1;
     }
 
+    public int getKthFromLast(int k) {
+        Node pointer1 = head;
+        Node pointer2 = head;
+        for (int i = 0; i < k - 1; i++) {
+            pointer2 = pointer2.next;
+        }
+        while (pointer2 != null) {
+            pointer2 = pointer2.next;
+            pointer1 = pointer1.next;
+        }
+        return pointer1.id;
+    }
 
 }
