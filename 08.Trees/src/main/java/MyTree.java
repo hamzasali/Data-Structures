@@ -28,4 +28,15 @@ public class MyTree {
             }
         }
     }
+
+    //Pre-Order Traversal of the tree
+    //root-left-right
+    void preOrderTraversal(TNode root){
+        if (root==null){
+            return;
+        }
+        System.out.println(root.value);
+        preOrderTraversal(root.leftChild);
+        preOrderTraversal(root.rightChild);
+    }
 }
