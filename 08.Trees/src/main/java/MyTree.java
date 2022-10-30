@@ -31,12 +31,30 @@ public class MyTree {
 
     //Pre-Order Traversal of the tree
     //root-left-right
-    void preOrderTraversal(TNode root){
-        if (root==null){
+    void preOrderTraversal(TNode root) {
+        if (root == null) {
             return;
         }
-        System.out.println(root.value);
+        System.out.print(root.value + ", ");
         preOrderTraversal(root.leftChild);
         preOrderTraversal(root.rightChild);
+    }
+
+    void inOrderTraversal(TNode root) {
+        if (root == null) {
+            return;
+        }
+        inOrderTraversal(root.leftChild);
+        System.out.print(root.value + ", ");
+        inOrderTraversal(root.rightChild);
+    }
+
+    void postOrderTraversal(TNode root) {
+        if (root == null) {
+            return;
+        }
+        postOrderTraversal(root.leftChild);
+        postOrderTraversal(root.rightChild);
+        System.out.print(root.value + ", ");
     }
 }
