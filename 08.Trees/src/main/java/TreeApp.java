@@ -8,10 +8,13 @@ public class TreeApp {
         }
         VisualizeTree.printTree(tree.root, null, false);
 
+        System.out.println("PRE Order");
         tree.preOrderTraversal(tree.root);
         System.out.println();
+        System.out.println("IN Order");
         tree.inOrderTraversal(tree.root);
         System.out.println();
+        System.out.println("POST Order");
         tree.postOrderTraversal(tree.root);
     }
 }
