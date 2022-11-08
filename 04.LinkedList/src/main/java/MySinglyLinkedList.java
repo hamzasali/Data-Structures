@@ -22,6 +22,9 @@ public class MySinglyLinkedList {
         Node node = new Node(data);
         if (isEmpty()) {
             head = tail = node;
+            System.out.println(head);
+            System.out.println(tail);
+            System.out.println(node);
             size++;
         } else {
             tail.next = node;

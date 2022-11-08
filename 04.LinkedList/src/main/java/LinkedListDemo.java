@@ -22,6 +22,5 @@ public class LinkedListDemo {
             current = current.next;
         }
 
-
     }
 }
