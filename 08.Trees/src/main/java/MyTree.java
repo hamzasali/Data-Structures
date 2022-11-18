@@ -61,36 +61,39 @@ public class MyTree {
         System.out.print(root.value + ", ");
     }
 
-    void levelOrderTraversal(){
-        if (root==null) return;
+    void levelOrderTraversal() {
+        if (root == null) return;
         Queue<TNode> queue = new LinkedList<>();
         queue.add(root);
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             TNode toVisit = queue.poll();
-            System.out.print(toVisit.value+", ");
-            if (toVisit.leftChild!=null){
+            System.out.print(toVisit.value + ", ");
+            if (toVisit.leftChild != null) {
                 queue.add(toVisit.leftChild);
-            }if (toVisit.rightChild!=null){
+            }
+            if (toVisit.rightChild != null) {
                 queue.add(toVisit.rightChild);
             }
         }
     }
 
-    public boolean contains(int value){
-        if (root==null) return false;
-        TNode current= root;
-        while (current!=null) {
-            if (value<current.value) current=current.leftChild;
-            else if (value> current.value) current=current.rightChild;
+    public boolean contains(int value) {
+        if (root == null) return false;
+        TNode current = root;
+        while (current != null) {
+            if (value < current.value) current = current.leftChild;
+            else if (value > current.value) current = current.rightChild;
             else return true;
         }
         return false;
     }
+
     public boolean isLeaf(TNode node) {
-        return node.leftChild==null && node.rightChild==null;
+        return node.leftChild == null && node.rightChild == null;
     }
-    public void printLeaves(TNode root){
-        if (root==null) return;
+
+    public void printLeaves(TNode root) {
+        if (root == null) return;
         // perform visit on Root
 
         // Recursively Branch Left Subtree
@@ -100,22 +103,38 @@ public class MyTree {
 
         // Recursively Branch Right Subtree
     }
-    int countLeaves(TNode root){
-        if (root==null) return 0;
+
+    int countLeaves(TNode root) {
+        if (root == null) return 0;
         if (isLeaf(root)) return 1;
         // recursively left
         // recursively right
         return countLeaves(root.leftChild) + countLeaves(root.rightChild);
     }
-    int findSumOfLeaves(TNode root){
-        if (root==null) return 0;
+
+    int findSumOfLeaves(TNode root) {
+        if (root == null) return 0;
         if (isLeaf(root)) return root.value;
         return findSumOfLeaves(root.leftChild) + findSumOfLeaves(root.rightChild);
     }
-    int height(TNode root){
-        if (root==null) return -1;
+
+    int height(TNode root) {
+        if (root == null) return -1;
         if (isLeaf(root)) return 0;
-        return 1+ Math.max(height(root.leftChild), height(root.rightChild));
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
     }
 
+    public int calculateNodeDepthSums() {
+        return nodeDepthSums(root, 0);
+    }
+
+    public int nodeDepthSums(TNode node, int A) {
+        if (node == null) {
+            return 0;
+        }
+        return A
+                + nodeDepthSums(node.leftChild, A + 1)
+                + nodeDepthSums(node.rightChild, A + 1);
+
+    }
 }
