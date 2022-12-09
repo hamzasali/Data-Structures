@@ -35,6 +35,37 @@ public class MyHeap {
         }
     }
 
+    public int remove() {
+        if (size == 0) throw new NoSuchElementException();
+        else {
+            int result = items[0];
+            items[0] = items[--size];
+            bubbleDown();
+            return result;
+        }
+    }
+
+    public void bubbleDown() {
+        int index = 0;
+        int largerChildIndex;
+        while (index <= size && !isValidParent(index)) {
+            largerChildIndex = largerChildIndex(index);
+            swap(index, largerChildIndex);
+            index = largerChildIndex;
+        }
+    }
+
+    public boolean isValidParent(int index) {
+        if (!hasLeftChild(index)) return true;
+        else {
+            boolean isValid = (items[index] >= items[leftChildIndex(index)]);
+            if (hasRightChild(index)) {
+                isValid = (items[index] >= items[leftChildIndex(index)] && items[index] >= items[rightChildIndex(index)]);
+            }
+            return isValid;
+        }
+    }
+
     public void swap(int first, int second) {
         int temp = items[first];
         items[first] = items[second];
