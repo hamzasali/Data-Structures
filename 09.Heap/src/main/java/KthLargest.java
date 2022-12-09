@@ -6,8 +6,8 @@ public class KthLargest {
 
     public static int getKthLargest(int[] array, int k) {
         MyHeap heap = new MyHeap(array.length);
-        for (int i = 0; i < array.length; i++) {
-            heap.insert(array[i]);
+        for (int j : array) {
+            heap.insert(j);
         }
         for (int i = 0; i < k - 1; i++) {
             heap.remove();
