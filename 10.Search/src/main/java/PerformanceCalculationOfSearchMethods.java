@@ -2,21 +2,20 @@ import java.util.Arrays;
 
 public class PerformanceCalculationOfSearchMethods {
     public static void main(String[] args) {
-        long[] numbers = new long[1000000];
+        int[] numbers = new int[1000000];
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = i;
         }
-        System.out.println(Arrays.toString(linear(numbers, 333333)));
-    }
+        }
 
-    public static long[] linear(long[] nums, int data) {
+    public static long[] linearSearch(int[] nums, int data) {
         long[] result = new long[2];
-        long start = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         int comparison = 0;
         for (int i = 0; i < nums.length; i++) {
             comparison++;
             if (nums[i] == data) {
-                result[0] = System.currentTimeMillis() - start;
+                result[0] = System.currentTimeMillis() - startTime;
                 result[1] = comparison;
                 return result;
             }
@@ -27,7 +26,7 @@ public class PerformanceCalculationOfSearchMethods {
 
     public static long[] binarySearch(int[] array, int data) {
         long[] result = new long[2];
-        long start = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         int comparison = 0;
 
         int left = 0;
@@ -36,7 +35,7 @@ public class PerformanceCalculationOfSearchMethods {
             int middle = (left + right) / 2;
             comparison++;
             if (array[middle] == data) {
-                result[0] = System.currentTimeMillis() - start;
+                result[0] = System.currentTimeMillis() - startTime;
                 result[1] = comparison;
                 return result;
             }
@@ -52,7 +51,7 @@ public class PerformanceCalculationOfSearchMethods {
 
     public static long[] ternarySearch(int[] array, int data) {
         long[] result = new long[2];
-        long start = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         int comparison = 0;
 
         int left = 0;
@@ -61,14 +60,15 @@ public class PerformanceCalculationOfSearchMethods {
             int partitionSize = (right - left) / 3;
             int mid1 = left + partitionSize;
             int mid2 = right - partitionSize;
-
+            comparison++;
             if (array[mid1] == data) {
-                result[0] = System.currentTimeMillis() - start;
+                result[0] = System.currentTimeMillis() - startTime;
                 result[1] = comparison;
                 return result;
             }
+            comparison++;
             if (array[mid2] == data) {
-                result[0] = System.currentTimeMillis() - start;
+                result[0] = System.currentTimeMillis() - startTime;
                 result[1] = comparison;
                 return result;
             }
@@ -86,6 +86,29 @@ public class PerformanceCalculationOfSearchMethods {
         return new long[2];
     }
 
+    public static long[] jumpSearch(int[] array, int data) {
+        long[] result = new long[2];
+        long startTime = System.currentTimeMillis();
+        int comparisons = 0;
+        int blockSize = (int) Math.sqrt(array.length);
+        int start = 0;
+        int next = blockSize;
+        while (start < array.length && array[next - 1] < data) {
+            start = next;
+            next += blockSize;
+            comparisons++;
+            if (next > array.length) next = array.length;
+        }
+        for (int i = start; i < next; i++) {
+            comparisons++;
+            if (array[i] == data) {
+                result[0] = System.currentTimeMillis() - startTime;
+                result[1] = comparisons;
+                return result;
+            }
 
+        }
+        return new long[2];
+    }
 
 }
