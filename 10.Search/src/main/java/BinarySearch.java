@@ -39,7 +39,7 @@ public class BinarySearch {
             return middle;
         }
         if (data < array[middle]) {
-            return binarySearchRecursive(array, data, left, right - 1);
+            return binarySearchRecursive(array, data, left, middle - 1);
         } else {
             return binarySearchRecursive(array, data, middle + 1, right);
         }
