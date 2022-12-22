@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class PerformanceCalculationOfLinearSearch {
+public class PerformanceCalculationOfSearchMethods {
     public static void main(String[] args) {
         long[] numbers = new long[1000000];
         for (int i = 0; i < numbers.length; i++) {
