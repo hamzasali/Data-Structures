@@ -47,8 +47,45 @@ public class PerformanceCalculationOfSearchMethods {
                 left = middle + 1;
             }
         }
-        return new long[0];
+        return new long[2];
     }
+
+    public static long[] ternarySearch(int[] array, int data) {
+        long[] result = new long[2];
+        long start = System.currentTimeMillis();
+        int comparison = 0;
+
+        int left = 0;
+        int right = array.length - 1;
+        while (right >= left) {
+            int partitionSize = (right - left) / 3;
+            int mid1 = left + partitionSize;
+            int mid2 = right - partitionSize;
+
+            if (array[mid1] == data) {
+                result[0] = System.currentTimeMillis() - start;
+                result[1] = comparison;
+                return result;
+            }
+            if (array[mid2] == data) {
+                result[0] = System.currentTimeMillis() - start;
+                result[1] = comparison;
+                return result;
+            }
+            comparison++;
+            if (data < array[mid1]) {
+                right = mid1 - 1;
+            } else if (data > array[mid2]) {
+                left = mid2 + 1;
+            } else {
+                left = mid1 + 1;
+                right = mid2 - 1;
+            }
+            comparison++;
+        }
+        return new long[2];
+    }
+
 
 
 }
